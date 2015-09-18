@@ -13,21 +13,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
+	var player = new Audio;
+	
 	setInterval(function(){
-		$.ajax({
-			url: '/index.php/api/play_next_song'
-		}).success(function(response) {
-			var songRequest = JSON.parse(response);
+		if(player.paused) {
 			$.ajax({
-				url: 'https://api.spotify.com/v1/search?q=' + songRequest.song_name + '+artist:' + songRequest.artist + '&type=track'
+				url: '/index.php/api/play_next_song'
 			}).success(function (response) {
-				var song = response.tracks.items[0];
-				$('#song_art').prop('src', song.album.images[0].url);
-				var player = new Audio;
-				player.src = song.preview_url;
-				player.play();
+				var songRequest = JSON.parse(response);
+				$.ajax({
+					url: 'https://api.spotify.com/v1/search?q=' + songRequest.song_name + '+artist:' + songRequest.artist + '&type=track'
+				}).success(function (response) {
+					var song = response.tracks.items[0];
+					$('#song_art').prop('src', song.album.images[0].url);
+					player.src = song.preview_url;
+					player.play();
+				});
 			});
-		});
+		}
 	}, 3000);
 </script>
 </body>
