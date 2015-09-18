@@ -12,7 +12,6 @@
         }
         
         public function save_song($song) {
-            
             $data = array(
                 'song_id' => $song['songId']
             );
