@@ -21,7 +21,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				url: '/index.php/api/play_next_song'
 			}).success(function (response) {
 				var songRequest = JSON.parse(response);
-				if(songRequest) {
+				
+				if(songRequest.song_name && songRequest.artist) {
 					$.ajax({
 						url: 'https://api.spotify.com/v1/search?q=' + songRequest.song_name + '+artist:' + songRequest.artist + '&type=track'
 					}).success(function (response) {
