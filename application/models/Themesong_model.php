@@ -18,7 +18,8 @@
         
         public function save_song($song) {
             $data = array(
-                'song_id' => $song['songId']
+                'artist' => $song['artist'],
+                'song_name' => $song['song_name']
             );
             
             $this->db->insert('playlist', $data);
