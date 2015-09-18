@@ -8,8 +8,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 
-<div id="container">
-	<iframe src="https://embed.spotify.com/?uri=spotify%3Atrack%3A64Ret7Tf2M8pDE4aqbW2tX" width="640" height="720" frameborder="0" allowtransparency="true" style="width: 100%;"></iframe>
+<div id="container" style="width: 100%; text-align: center">
+	<img id="song_art"/>
 </div>
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$.ajax({
 				url: 'https://api.spotify.com/v1/tracks/' + song.song_id
 			}).success(function (response) {
-				
+				$('#song_art').set('src', response.images[0]);
 				var player = new Audio;
 				player.src = response.preview_url;
 				player.play();
