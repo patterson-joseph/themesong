@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script>
 	setInterval(function(){
 		$.ajax({
-			url: '/api/play_next_song'
+			url: '/index.php/api/play_next_song'
 		}).success(function(response) {
 			console.log(response);
 //			
