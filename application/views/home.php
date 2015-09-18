@@ -10,11 +10,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div id="container" style="width: 100%; text-align: center">
 	<img id="song_art"/>
-	<audio id="song"></audio>
 </div>
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
-	var player = $('#song');
+	var player = new Audio();
 	
 	setInterval(function(){
 		if(player.paused) {
@@ -28,12 +27,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					var song = response.tracks.items[0];
 					$('#song_art').prop('src', song.album.images[0].url);
 					player.src = song.preview_url;
-//					player.volume = 0;
+					player.volume = 0;
 					player.play();
-//					player.animate({volume: 1}, 2000);
+					$(player).animate({volume: 1}, 2000);
 					
 					setTimeout(function() {
-						player.animate({volume: 0}, 2000, 'swing', function() {
+						$(player).animate({volume: 0}, 2000, 'swing', function() {
 							// really stop the music 
 							player.pause();
 						});
