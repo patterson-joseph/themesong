@@ -11,7 +11,10 @@
 		public function play_next_song() {
 			$this->load->model('Themesong_model', 'themesong');
 			$song = $this->themesong->get_next_song();
-			echo json_encode($song);
+			
+			if($song) {
+				echo json_encode($song);
+			}
 		}
 	
 	}

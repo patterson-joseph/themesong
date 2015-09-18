@@ -8,13 +8,15 @@
         
         public function get_next_song() {
             $query = $this->db->get('playlist', 1);
-            $song = $query->row();
-            
+
             if($query->num_rows()) {
+                $song = $query->row();
                 $this->db->where('id', $song->id);
                 $this->db->delete('playlist');
+            } else {
+                $song = false;
             }
-            
+
             return $song;
         }
         

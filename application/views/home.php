@@ -21,23 +21,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				url: '/index.php/api/play_next_song'
 			}).success(function (response) {
 				var songRequest = JSON.parse(response);
-				$.ajax({
-					url: 'https://api.spotify.com/v1/search?q=' + songRequest.song_name + '+artist:' + songRequest.artist + '&type=track'
-				}).success(function (response) {
-					var song = response.tracks.items[0];
-					$('#song_art').prop('src', song.album.images[0].url);
-					player.src = song.preview_url;
-					player.volume = 0;
-					player.play();
-					$(player).animate({volume: 1}, 2000);
-					
-					setTimeout(function() {
-						$(player).animate({volume: 0}, 2000, 'swing', function() {
-							// really stop the music 
-							player.pause();
-						});
-					}, 13000);
-				});
+				if(response) {
+					$.ajax({
+						url: 'https://api.spotify.com/v1/search?q=' + songRequest.song_name + '+artist:' + songRequest.artist + '&type=track'
+					}).success(function (response) {
+						var song = response.tracks.items[0];
+						$('#song_art').prop('src', song.album.images[0].url);
+						player.src = song.preview_url;
+						player.volume = 0;
+						player.play();
+						$(player).animate({volume: 1}, 2000);
+
+						setTimeout(function () {
+							$(player).animate({volume: 0}, 2000, 'swing', function () {
+								// really stop the music 
+								player.pause();
+								$('#song_art').prop('src', '');
+							});
+						}, 13000);
+					});
+				}
 			});
 		}
 	}, 3000);
