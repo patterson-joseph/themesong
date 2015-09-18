@@ -10,10 +10,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div id="container" style="width: 100%; text-align: center">
 	<img id="song_art"/>
+	<audio id="song"></audio>
 </div>
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
-	var player = new Audio;
+	var player = $('$song');
 	
 	setInterval(function(){
 		if(player.paused) {
