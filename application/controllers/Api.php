@@ -6,8 +6,7 @@
 		public function queue_song() {
 			$this->load->model('Themesong_model', 'themesong');
 			$this->themesong->save_song($this->input->post());
-			echo '{status:success}';
-			
+			header('Content-Type: application/json');
 		}
 	
 		public function play_next_song() {
