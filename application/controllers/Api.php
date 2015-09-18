@@ -8,7 +8,7 @@
 			$this->themesong->save_song($this->input->post());
 			header('Content-Type: application/json');
 			
-			echo json_decode($this->input->post());
+			echo json_encode($this->input->post());
 		}
 	
 		public function play_next_song() {
