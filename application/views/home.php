@@ -17,15 +17,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$.ajax({
 			url: '/index.php/api/play_next_song'
 		}).success(function(response) {
-			console.log(response);
-//			
-//			$.ajax({
-//				url: 'https://api.spotify.com/v1/tracks/<?php //echo $songId; ?>//'
-//			}).success(function (response) {
-//				var player = new Audio;
-//				player.src = response.preview_url;
-//				player.play();
-//			});
+			var song = JSON.parse(response);
+			$.ajax({
+				url: 'https://api.spotify.com/v1/tracks/' + song.song_id
+			}).success(function (response) {
+				
+				var player = new Audio;
+				player.src = response.preview_url;
+				player.play();
+			});
 		});
 	}, 3000);
 </script>
