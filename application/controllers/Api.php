@@ -17,8 +17,6 @@
 			
 			if($song) {
 				echo json_encode($song);
-			} else {
-				header('HTTP/1.0 400 No songs in queue');
 			}
 		}
 	
