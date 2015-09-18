@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					}, 13000);
 				});
 			}).error(function() {
-				
+				console.log('got 400');
 			});
 		}
 	}, 3000);
