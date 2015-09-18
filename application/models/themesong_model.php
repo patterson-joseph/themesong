@@ -7,8 +7,13 @@
         }
         
         public function get_next_song() {
-            $query = $this->db->get_where('playlist', array('played' => 0), 1);
-            return $query->row();
+            $query = $this->db->get('playlist', 1);
+            $song = $query->row();
+            
+            $this->db->where('id', $song->id);
+            $this->db->delete('playlist');
+            
+            return $song;
         }
         
         public function save_song($song) {
