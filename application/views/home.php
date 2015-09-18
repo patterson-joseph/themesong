@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								player.pause();
 								$('#song_art').prop('src', '');
 							});
-						}, 13000);
+						}, 28000);
 					});
 				}
 			});
