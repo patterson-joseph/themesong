@@ -10,8 +10,10 @@
             $query = $this->db->get('playlist', 1);
             $song = $query->row();
             
-            $this->db->where('id', $song->id);
-            $this->db->delete('playlist');
+            if($query->num_rows()) {
+                $this->db->where('id', $song->id);
+                $this->db->delete('playlist');
+            }
             
             return $song;
         }

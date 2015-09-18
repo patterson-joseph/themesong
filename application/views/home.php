@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					player.play();
 					setTimeout(function() {
 						player.pause();
-					}, 5000);
+					}, 15000);
 				});
 			});
 		}
