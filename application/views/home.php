@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$.ajax({
 				url: 'https://api.spotify.com/v1/tracks/' + song.song_id
 			}).success(function (response) {
-				$('#song_art').set('src', response.images[0]);
+				$('#song_art').set('src', response.album.images[0].url);
 				var player = new Audio;
 				player.src = response.preview_url;
 				player.play();
